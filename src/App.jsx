@@ -9,12 +9,12 @@ function App() {
   // 데이터 가공 영역
   const [todos, setTodos] = useState([
     {
-      id:2,
+      id:1,
       text: '잠자기',
       checked: true
     },
     {
-      id:3,
+      id:2,
       text: '밥먹기',
       checked: false
     }
@@ -36,13 +36,25 @@ function App() {
     nextId.current++; // current 적어야 변수에 들어간 값에 접근
   }
 
+  const onToggle = (id) => {
+    setTodos(
+      todos.map(todo => 
+          todo.id === id ? {...todo, checked:!todo.checked} : todo
+        )
+    )
+  }
+
+  const onDelete = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  }
+
   return (
     <div>
       <GlobalStyle />
       <TodoTemplate>
         <TodoHeader />
         <TodoInsert onInsert={onInsert} />
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} onToggle={onToggle} onDelete={onDelete}/>
       </TodoTemplate>
     </div>
   )

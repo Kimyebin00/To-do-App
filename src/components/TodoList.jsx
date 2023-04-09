@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
 
-function TodoList({todos}) {
+function TodoList({todos, onToggle, onDelete}) {
 
 
   return ( 
@@ -10,6 +10,8 @@ function TodoList({todos}) {
         <TodoListItem 
           key={todo.id}
           todo={todo}
+          onToggle={onToggle}
+          onDelete={onDelete}
         />
       ))}
       
